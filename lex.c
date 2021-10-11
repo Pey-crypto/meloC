@@ -1,9 +1,9 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-void blink_parse(char c){
-    int n = strcmp(c,"main");
-    printf("%d\n",n);
+
+void blink_parse(char *line){
+    printf("%s\n",line);
 }
 void main(int argc, char *argv[]){
     FILE *fp;
@@ -22,8 +22,14 @@ void main(int argc, char *argv[]){
     }
 
     //Reads the file
-    char c;
-    while((c = fgetc(fp)) != EOF){
-        blink_parse(c);
+    char *line = NULL;
+    size_t len = 0;
+    ssize_t read;
+    while((read = getline(&line, &len, fp)) != -1)
+    {
+        blink_parse(line);
     }
+    fclose(fp);
+    if(line)
+        free(line); 
 }
