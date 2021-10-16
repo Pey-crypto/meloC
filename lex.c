@@ -8,7 +8,7 @@ void blink_parse(char *line){
 void main(int argc, char *argv[]){
     FILE *fp;
     if(argc != 2){
-        printf("\nUsage: %s <filename>\n", argv[0]);
+        printf("\nUsage: %s <file>\n", argv[0]);
         exit(1);
     }
     printf("\nPretty Basic Lexical Analyser\n");
